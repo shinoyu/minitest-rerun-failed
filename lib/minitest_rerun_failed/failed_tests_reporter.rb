@@ -65,7 +65,7 @@ module Minitest
       def find_failure_location(test, curdir)
         # Build a haystack string from failures and errors to find test file location in
         tmp_haystack = []
-        tmp_haystack << test.failure.location
+        tmp_haystack << test.source_location.join(':')
         tmp_haystack << test.to_s
         # Add filtered backtrace unless it is an unexpected error, which do not have a useful trace
         tmp_haystack << filter_backtrace(test.failure.backtrace).join unless test.failure.is_a?(Minitest::UnexpectedError)
